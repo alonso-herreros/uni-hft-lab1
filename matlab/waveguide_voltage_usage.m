@@ -19,12 +19,8 @@ ylabel('Voltage (normalized)')
 title('Voltage measured along loaded waveguide')
 legend('Unknown load', 'Short circuit', 'Open circuit')
 
-max_val = max(v_load);
-min_val = min(v_load);
 
 n = length(v_load); % Obtener la longitud del vector
-
-SWR = max_val / min_val
 
 %% Finding lambda
 
@@ -36,6 +32,12 @@ SWR = max_val / min_val
 lambda_sw = (peak_indices_load(2) - peak_indices_load(1);)*STEP; % in m
 lambda = lambda_sw * 2;
 beta = (2*pi)/lambda;
+
+%% Finding SWR
+
+vmax_load = max(v_load);
+vmin_load = min(v_load);
+SWR = vmax_load / vmin_load;
 
 [min_val_sc, max_idx_sc] = max(v_sc);
 max_idx_sc
