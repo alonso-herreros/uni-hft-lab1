@@ -33,14 +33,16 @@ lambda_sw = (peak_indices_load(2) - peak_indices_load(1);)*STEP; % in m
 lambda = lambda_sw * 2;
 beta = (2*pi)/lambda;
 
+
 %% Finding SWR
 
 vmax_load = max(v_load);
 vmin_load = min(v_load);
 SWR = vmax_load / vmin_load;
 
-[min_val_sc, max_idx_sc] = max(v_sc);
-max_idx_sc
+[vmax_sc, vmax_sc_idx] = max(v_sc);
+[vmin_sc, vmin_sc_idx] = min(v_sc);
+disp(vmin_sc)
 
 l = min_idx_1 - min_idx_sc;
 l_mm = (l*40)/400;
