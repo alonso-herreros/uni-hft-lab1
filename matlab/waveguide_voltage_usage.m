@@ -1,7 +1,12 @@
+%% Init options and simulation
+
 nia = [100496143, 100493990];
 % nia = [100123456];
 
-d = linspace(0, 40e-3, 401);
+STEP = 0.1e-3; % 0.1 mm steps
+SIMUL_LENGTH = 40e-3; % 40 mm simulation
+
+d = linspace(0, SIMUL_LENGTH, 1+SIMUL_LENGTH/STEP); % in m
 v_load = waveguide_voltage('unknown', d, nia);
 v_sc = waveguide_voltage('short', d, nia);
 v_oc = waveguide_voltage('open', d, nia);
@@ -18,15 +23,19 @@ max_val = max(v_load);
 min_val = min(v_load);
 
 n = length(v_load); % Obtener la longitud del vector
-v_load_half = v_load(floor(n/2):length(v_load)); % Tomar desde el índice 1 hasta la mitad
-[max_val_2, max_idx_1] = max(v_load);
-[max_val_1, max_idx_2] = max(v_load_half);
-max_idx_2 = max_idx_2 + floor(n/2);
-d = max_idx_2 - max_idx_1
 
-d_mm = (d*40)/400
-lambda_mm = d_mm * 2
 SWR = max_val / min_val
+
+%% Finding lambda
+
+% We find the indices of the peak values
+[~, peak_indices_load] = findpeaks(v_load);
+
+% The difference between these two first maxima is standing wave wavelength
+% We know the number of steps, we'll convert to m
+lambda_sw = (peak_indices_load(2) - peak_indices_load(1);)*STEP; % in m
+lambda = lambda_sw * 2;
+beta = (2*pi)/lambda;
 
 [min_val_sc, max_idx_sc] = max(v_sc);
 max_idx_sc
@@ -34,6 +43,5 @@ max_idx_sc
 l = min_idx_1 - min_idx_sc;
 l_mm = (l*40)/400;
 
-beta = (2*pi)/lambda_mm;
 
 theta_rad = pi + 2*beta*l_mm
