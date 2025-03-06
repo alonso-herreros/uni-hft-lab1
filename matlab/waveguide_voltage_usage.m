@@ -58,5 +58,8 @@ vmin_load_idx = peak_indices_load(1);
 l = abs(vmin_sc_idx - vmin_load_idx)*STEP; % in m
 fprintf('l = %.3f mm\n', l*1e3);
 
+%% Finding θ
 
-theta_rad = pi + 2*beta*l_mm
+theta = mod(pi + 2*beta*l, 2*pi); % rad, [0,2π)
+fprintf('θ = %.3f rad (%.2f π)\n', theta, theta/pi);
+
