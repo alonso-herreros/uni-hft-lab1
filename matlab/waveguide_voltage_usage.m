@@ -37,7 +37,7 @@ lambda = lambda_sw * 2; % m
 beta = (2*pi)/lambda; % m^-1
 f = c/lambda; % Hz
 
-fprintf('Frequency: %.3e Hz', f)
+fprintf('Frequency: %.3e Hz\n', f)
 
 
 %% Finding SWR
