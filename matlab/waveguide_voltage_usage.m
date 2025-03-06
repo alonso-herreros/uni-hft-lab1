@@ -3,6 +3,9 @@
 nia = [100496143, 100493990];
 % nia = [100123456];
 
+% Constants
+c = 3e8; % m/s
+
 STEP = 0.1e-3; % 0.1 mm steps
 SIMUL_LENGTH = 40e-3; % 40 mm simulation
 
@@ -29,9 +32,12 @@ n = length(v_load); % Obtener la longitud del vector
 
 % The difference between these two first maxima is standing wave wavelength
 % We know the number of steps, we'll convert to m
-lambda_sw = (peak_indices_load(2) - peak_indices_load(1);)*STEP; % in m
+lambda_sw = (peak_indices_load(2) - peak_indices_load(1))*STEP; % in m
 lambda = lambda_sw * 2;
 beta = (2*pi)/lambda;
+f = c/lambda; % Hz
+
+fprintf('Frequency: %.3e Hz', f)
 
 
 %% Finding SWR
