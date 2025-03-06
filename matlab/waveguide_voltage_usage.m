@@ -37,7 +37,8 @@ lambda = lambda_sw * 2; % m
 beta = (2*pi)/lambda; % m^-1
 f = c/lambda; % Hz
 
-fprintf('Frequency: %.3e Hz\n', f)
+fprintf('λ = %.2f mm\n', lambda*1e3)
+fprintf('f = %.3e Hz\n', f)
 
 
 %% Finding SWR and |Γ|
@@ -45,6 +46,7 @@ fprintf('Frequency: %.3e Hz\n', f)
 vmax_load = max(v_load);
 vmin_load = min(v_load);
 SWR = vmax_load / vmin_load;
+fprintf('SWR = %.3f\n', SWR);
 
 Gamma = (SWR-1)/(SWR+1);
 fprintf('|Γ| = %.3f\n', Gamma);
@@ -56,10 +58,9 @@ fprintf('|Γ| = %.3f\n', Gamma);
 vmin_load_idx = peak_indices_load(1);
 
 l = abs(vmin_sc_idx - vmin_load_idx)*STEP; % in m
-fprintf('l = %.3f mm\n', l*1e3);
+fprintf('l = %.3f mm (%.4f λ)\n', l*1e3, l/lambda);
 
 %% Finding θ
 
 theta = mod(pi + 2*beta*l, 2*pi); % rad, [0,2π)
 fprintf('θ = %.3f rad (%.2f π)\n', theta, theta/pi);
-
