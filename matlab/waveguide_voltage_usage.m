@@ -49,11 +49,14 @@ SWR = vmax_load / vmin_load;
 Gamma = (SWR-1)/(SWR+1);
 fprintf('Γ = %.3f\n', Gamma);
 
-[vmin_sc, vmin_sc_idx] = min(v_sc);
-disp(vmin_sc)
 
-l = min_idx_1 - min_idx_sc;
-l_mm = (l*40)/400;
+%% Finding l: distance between SC and Loaded minima
+
+[vmin_sc, vmin_sc_idx] = min(v_sc);
+vmin_load_idx = peak_indices_load(1);
+
+l = abs(vmin_sc_idx - vmin_load_idx)*STEP; % in m
+fprintf('l = %.3f mm\n', l*1e3);
 
 
 theta_rad = pi + 2*beta*l_mm
