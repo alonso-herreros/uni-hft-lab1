@@ -40,13 +40,15 @@ f = c/lambda; % Hz
 fprintf('Frequency: %.3e Hz\n', f)
 
 
-%% Finding SWR
+%% Finding SWR and |Γ|
 
 vmax_load = max(v_load);
 vmin_load = min(v_load);
 SWR = vmax_load / vmin_load;
 
-[vmax_sc, vmax_sc_idx] = max(v_sc);
+Gamma = (SWR-1)/(SWR+1);
+fprintf('Γ = %.3f\n', Gamma);
+
 [vmin_sc, vmin_sc_idx] = min(v_sc);
 disp(vmin_sc)
 
