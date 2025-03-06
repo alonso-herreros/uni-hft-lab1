@@ -47,7 +47,7 @@ vmin_load = min(v_load);
 SWR = vmax_load / vmin_load;
 
 Gamma = (SWR-1)/(SWR+1);
-fprintf('Γ = %.3f\n', Gamma);
+fprintf('|Γ| = %.3f\n', Gamma);
 
 
 %% Finding l: distance between SC and Loaded minima
