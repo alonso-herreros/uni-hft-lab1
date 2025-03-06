@@ -33,8 +33,8 @@ n = length(v_load); % Obtener la longitud del vector
 % The difference between these two first maxima is standing wave wavelength
 % We know the number of steps, we'll convert to m
 lambda_sw = (peak_indices_load(2) - peak_indices_load(1))*STEP; % in m
-lambda = lambda_sw * 2;
-beta = (2*pi)/lambda;
+lambda = lambda_sw * 2; % m
+beta = (2*pi)/lambda; % m^-1
 f = c/lambda; % Hz
 
 fprintf('Frequency: %.3e Hz', f)
